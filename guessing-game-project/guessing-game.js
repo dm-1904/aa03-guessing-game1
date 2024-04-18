@@ -3,14 +3,16 @@ const { stdin: input, stdout: output } = require('node:process');
 
 const rl = readline.createInterface({ input, output });
 
-let secretNumber = 5
+let secretNumber = randomInRange(0, 100)
 
-function getRandomInt(min, max) {
+function randomInRange(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); 
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); 
   }
-
+//   console.log(secretNumber)
+//   console.log(secretNumber)
+//   console.log(secretNumber)
 const checkGuess = (num) => {
     if(num > secretNumber) {
         console.log('Too High.')
