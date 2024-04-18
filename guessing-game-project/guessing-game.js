@@ -1,3 +1,8 @@
+const readline = require('node:readline');
+const { stdin: input, stdout: output } = require('node:process');
+
+const rl = readline.createInterface({ input, output });
+
 let secretNumber = 5
 
 const checkGuess = (num) => {
@@ -15,9 +20,16 @@ const checkGuess = (num) => {
     }
 }
 
-checkGuess(29)
-checkGuess(36)
-checkGuess(8)
-checkGuess(1)
-checkGuess(2)
-checkGuess(5)
+const askGuess = () => {
+    rl.question("Enter a guess: ", (answer) => {
+        checkGuess(answer)
+        rl.close()
+    })
+}
+
+askGuess(29)
+askGuess(36)
+askGuess(8)
+askGuess(1)
+askGuess(2)
+askGuess(5)
