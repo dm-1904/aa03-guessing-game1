@@ -8,7 +8,7 @@ let secretNumber = randomInRange(0, 100)
 function randomInRange(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); 
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
   }
 //   console.log(secretNumber)
 //   console.log(secretNumber)
@@ -40,4 +40,17 @@ const askGuess = () => {
 
 
 
-askGuess()
+// askGuess()
+
+const askRange = () => {
+    rl.question('Enter Minimum Number: ', (answer1) => {
+        rl.question('Enter Maximum Number: ', (answer2) => {
+            console.log("I'm thinking of a number between " + answer1 + ' and ' + answer2 + '...')
+            answer1 = Number(answer1)
+            answer2 = Number(answer2)
+            secretNumber = randomInRange(answer1, answer2)
+        })
+    })
+}
+
+askRange()
