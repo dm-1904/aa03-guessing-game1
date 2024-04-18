@@ -14,22 +14,22 @@ const checkGuess = (num) => {
         console.log('Too Low.')
         return false
     }
-    if(num === Number(secretNumber)) {
-        console.log('Correct!')
+    if(num == Number(secretNumber)) {
+        console.log('You Win!')
         return true
     }
 }
 
 const askGuess = () => {
     rl.question("Enter a guess: ", (answer) => {
-        checkGuess(answer)
+        if(checkGuess(answer)) {
         rl.close()
+        } else {
+            askGuess()
+        }
     })
 }
 
-askGuess(29)
-askGuess(36)
-askGuess(8)
-askGuess(1)
-askGuess(2)
-askGuess(5)
+
+
+askGuess()
