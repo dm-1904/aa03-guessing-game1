@@ -4,15 +4,21 @@ const { stdin: input, stdout: output } = require('node:process');
 const rl = readline.createInterface({ input, output });
 
 let secretNumber = randomInRange(0, 100)
+let numAttempts
 
 function randomInRange(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
   }
-//   console.log(secretNumber)
-//   console.log(secretNumber)
-//   console.log(secretNumber)
+
+const askLimit = () => {
+    rl.question('Enter a Limit: ', (answer) => {
+        numAttempts = answer
+        askRange()
+    })
+}
+
 const checkGuess = (num) => {
     if(num > secretNumber) {
         console.log('Too High.')
@@ -33,6 +39,11 @@ const askGuess = () => {
         if(checkGuess(answer)) {
         rl.close()
         } else {
+            numAttempts-=1
+            if(numAttempts === 0){
+                console.log('YOU LOOSE!!!!')
+                return rl.close()
+            }
             askGuess()
         }
     })
@@ -49,8 +60,11 @@ const askRange = () => {
             answer1 = Number(answer1)
             answer2 = Number(answer2)
             secretNumber = randomInRange(answer1, answer2)
+            askGuess()
         })
     })
 }
 
-askRange()
+
+
+askLimit() 
